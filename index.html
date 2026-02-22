@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment 4 | Pranto Dutta</title>
+    <!-- Tailwind & DaisyUI Connect -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body class="min-h-screen bg-[#F8FAFC]">
+    <header class="w-111/160 mx-auto pt-15">
+      <h1 class="text-3xl font-bold leading-8 text-[#002C5C] mb-5">
+        Job Application Tracker
+      </h1>
+      <div class="grid grid-cols-3 gap-4">
+        <div class="bg-[#FFFFFF] rounded-lg shadow p-5">
+          <p class="text-[#323B49] font-medium text-sm">Total</p>
+          <h4 id="total-count" class="text-[#002C5C] font-bold text-2xl">8</h4>
+        </div>
+        <div class="bg-[#FFFFFF] rounded-lg shadow p-5">
+          <p class="text-[#323B49] font-medium text-sm">Interview</p>
+          <h4 id="interview-count" class="text-[#10B981] font-bold text-2xl">
+            0
+          </h4>
+        </div>
+        <div class="bg-[#FFFFFF] rounded-lg shadow p-5">
+          <p class="text-[#323B49] font-medium text-sm">Rejected</p>
+          <h4 id="rejected-count" class="text-[#EF4444] font-bold text-2xl">
+            0
+          </h4>
+        </div>
+      </div>
+    </header>
+    <hr class="w-111/160 my-7.5 mx-auto text-[#E6E7E9] border" />
+
+    <main class="w-111/160 mx-auto">
+      <section class="flex justify-between items-center mb-6">
+        <h2 class="text-[#002C5C] text-xl font-semibold">Available Jobs</h2>
+        <p class="text-[#64748B] font-medium">
+          <span id="all-job-count">8</span> jobs
+        </p>
+      </section>
+
+      <section class="toggle-btn flex gap-2">
+        <button
+          id="all-filter-btn"
+          class="btn w-20 h-8 px-3 py-2 bg-[#3B82F6] text-white text-sm font-medium"
+        >
+          All
+        </button>
+        <button
+          id="interview-filter-btn"
+          class="btn w-20 h-8 px-3 py-2 bg-[#FFFFFF] text-[#64748B] text-sm font-medium"
+        >
+          Interview
+        </button>
+        <button
+          id="Rejected-filter-btn"
+          class="btn w-20 h-8 px-3 py-2 bg-[#FFFFFF] text-[#64748B] text-sm font-medium"
+        >
+          Rejected
+        </button>
+      </section>
+    </main>
+    <script src="./script.js"></script>
+  </body>
+</html>
