@@ -41,7 +41,7 @@
       <div class="grid grid-cols-3 gap-4">
         <div class="bg-[#FFFFFF] rounded-lg shadow p-5">
           <p class="text-[#323B49] font-medium text-sm">Total</p>
-          <h4 id="total-count" class="text-[#002C5C] font-bold text-2xl">8</h4>
+          <h4 id="total-count" class="text-[#002C5C] font-bold text-2xl">0</h4>
         </div>
         <div class="bg-[#FFFFFF] rounded-lg shadow p-5">
           <p class="text-[#323B49] font-medium text-sm">Interview</p>
@@ -64,64 +64,70 @@
       <section class="flex justify-between items-center mb-6">
         <h2 class="text-[#002C5C] text-xl font-semibold">Available Jobs</h2>
         <p class="text-[#64748B] font-medium">
-          <span id="all-job-count">8</span> jobs
+          <span id="job-count">0</span> jobs
         </p>
       </section>
       <!-- Toggle Button  -->
       <section class="toggle-btn flex gap-2 mb-4">
-        <button
+        <button onclick="toggleButton('all-filter-btn')"
           id="all-filter-btn"
           class="btn w-20 h-8 px-3 py-2 bg-[#3B82F6] text-white text-sm font-medium"
         >
           All
         </button>
-        <button
+        <button onclick="toggleButton('interview-filter-btn')"
           id="interview-filter-btn"
           class="btn w-20 h-8 px-3 py-2 bg-[#FFFFFF] text-[#64748B] text-sm font-medium"
         >
           Interview
         </button>
-        <button
-          id="Rejected-filter-btn"
+        <button onclick="toggleButton('rejected-filter-btn')"
+          id="rejected-filter-btn"
           class="btn w-20 h-8 px-3 py-2 bg-[#FFFFFF] text-[#64748B] text-sm font-medium"
         >
           Rejected
         </button>
       </section>
+
+      <!-- Filtered card Section  -->
+
+      <section id="filtered-section"  class="hidden card-section-container space-y-4 pb-15">
+
+      </section>
       <!-- Card Section  -->
-      <section class="card-section-container hidden space-y-4 pb-15 ">
+      <section id="all-cards" class="card-section-container space-y-4 pb-15">
         <!-- Card 1 -->
         <div class="card border-2 border-[#F1F2F4] p-6 bg-white rounded-lg">
           <div class="flex justify-between items-center">
             <div class="space-y-1">
-              <h4 class="text-[#002C5C] text-lg font-semibold leading-6">
+              <h4 class="company-name text-[#002C5C] text-lg font-semibold leading-6">
                 Mobile First Corp
               </h4>
-              <p class="text-[#64748B] leading-5">React Native Developer</p>
+              <p class="job-post text-[#64748B] leading-5">React Native Developer</p>
             </div>
             <div
-              class="border-2 btn border-[#F1F2F4] text-[#64748B] rounded-full px-2 py-1"
+              class="delete-btn border-2 btn border-[#F1F2F4] text-[#64748B] rounded-full px-2 py-1"
             >
               <button class="cursor-pointer">
                 <i class="fa-regular fa-trash-can"></i>
               </button>
             </div>
           </div>
-          <p class="text-[#64748B] leading-5 text-sm py-5">
+          <p class="salary text-[#64748B] leading-5 text-sm py-5">
             Remote • Full-time • $130,000 - $175,000
           </p>
           <button
-            class="w-fit py-2 leading-5 mb-2 uppercase px-3 text-sm font-medium bg-[#EEF4FF] text-[#002C5C] rounded-sm"
+            class="job-status w-fit py-2 leading-5 mb-2 uppercase px-3 text-sm font-medium bg-[#EEF4FF] text-[#002C5C] rounded-sm"
           >
             Not Applied
           </button>
-          <p class="text-[#323B49] leading-5 text-sm mb-5">
+          <p class="description text-[#323B49] leading-5 text-sm mb-5">
             Build cross-platform mobile applications using React Native. Work on
             products used by millions of users worldwide.
           </p>
           <div class="flex gap-2">
             <button
-              class="uppercase bg-white btn text-sm font-semibold text-[#10B981] border-2 border-[#10B981] hover:shadow-lg"
+              class="interview-btn uppercase bg-white btn text-sm font-semibold text-[#10B981] border-2 border-[#10B981] hover:shadow-lg"
             >
               interview
             </button>
@@ -415,7 +421,9 @@
             Not Applied
           </button>
           <p class="text-[#323B49] leading-5 text-sm mb-5">
-            We are looking for an experienced Frontend Developer to build scalable web applications using React and TypeScript. You will work with a talented team on cutting-edge projects.
+            We are looking for an experienced Frontend Developer to build
+            scalable web applications using React and TypeScript. You will work
+            with a talented team on cutting-edge projects.
           </p>
           <div class="flex gap-2">
             <button
@@ -433,14 +441,19 @@
       </section>
 
       <!-- No Jobs Section -->
-       <section class="pb-33">
-          <div class="bg-white min-h-[400px]  rounded-lg border border-[#F1F2F4]
-          flex flex-col justify-center items-center">
-              <img class="mb-5" src="./assets/jobs.png" alt="">
-              <h2 class="text-[#002C5C] text-2xl font-semibold leading-8">No jobs available</h2>
-              <p class="text-[#64748B] leading-5">Check back soon for new job opportunities</p>
-          </div>
-       </section>
+      <section class="pb-33">
+        <div
+          class="bg-white min-h-[400px] rounded-lg border-2 border-[#F1F2F4] flex flex-col justify-center items-center"
+        >
+          <img class="mb-5" src="./assets/jobs.png" alt="" />
+          <h2 class="text-[#002C5C] text-2xl font-semibold leading-8">
+            No jobs available
+          </h2>
+          <p class="text-[#64748B] leading-5">
+            Check back soon for new job opportunities
+          </p>
+        </div>
+      </section>
     </main>
     <script src="./script.js"></script>
   </body>
