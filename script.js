@@ -14,11 +14,20 @@ const allCards = document.getElementById("all-cards");
 const interviewCards = document.getElementById("filtered-section");
 
 function cardCount() {
-  jobCount.innerText = allCards.children.length;
   totalCount.innerText = allCards.children.length;
   interviewCount.innerText = interviewList.length;
   rejectedCount.innerText = rejectedList.length;
+
+  if (currentStatus === "interview-filter-btn") {
+    jobCount.innerText = interviewList.length;
+  } else if (currentStatus === "rejected-filter-btn") {
+    jobCount.innerText = rejectedList.length;
+  } else {
+    jobCount.innerText = allCards.children.length;
+  }
+  checkNoJobs();
 }
+
 cardCount();
 
 // Button Toggling
@@ -54,12 +63,45 @@ function toggleButton(id) {
     filteredSection.classList.remove("hidden");
     renderRejectedList();
   }
+  checkNoJobs();
+  cardCount();
 }
 
 // Main event delegation
 const mainContainer = document.querySelector("main");
 
 mainContainer.addEventListener("click", function (event) {
+  // If click delete
+  const deleteBtn = event.target.closest(".delete-btn");
+  if (deleteBtn) {
+    const parent = deleteBtn.closest(".card");
+    const companyName = parent.querySelector(".company-name").innerText.trim();
+
+    // Delete from all-section
+    const allCardsList = document.querySelectorAll("#all-cards .card");
+    allCardsList.forEach((card) => {
+      if (
+        card.querySelector(".company-name").innerText.trim() === companyName
+      ) {
+        card.remove();
+      }
+    });
+
+    // Delete from array
+    interviewList = interviewList.filter(
+      (item) => item.companyName.trim() !== companyName,
+    );
+    rejectedList = rejectedList.filter(
+      (item) => item.companyName.trim() !== companyName,
+    );
+
+
+    if (currentStatus === "interview-filter-btn") renderInterviewList();
+    if (currentStatus === "rejected-filter-btn") renderRejectedList();
+
+    cardCount();
+    return;
+  }
   // If click interview
   if (event.target.classList.contains("interview-btn")) {
     const parent = event.target.parentNode.parentNode;
@@ -91,7 +133,7 @@ mainContainer.addEventListener("click", function (event) {
       interviewList.push(cardInfo);
     }
 
-    //Bujhi nai suru
+
     rejectedList = rejectedList.filter(
       (item) => item.companyName != cardInfo.companyName,
     );
@@ -102,7 +144,6 @@ mainContainer.addEventListener("click", function (event) {
     if (currentStatus == "rejected-filter-btn") {
       renderRejectedList();
     }
-    //Bujhi nai ses
 
     syncAllSection(companyName, "interview");
     cardCount();
@@ -136,7 +177,6 @@ mainContainer.addEventListener("click", function (event) {
       rejectedList.push(cardInfo);
     }
 
-    //Bujhi nai suru
     interviewList = interviewList.filter(
       (item) => item.companyName != cardInfo.companyName,
     );
@@ -146,7 +186,7 @@ mainContainer.addEventListener("click", function (event) {
     if (currentStatus == "interview-filter-btn") {
       renderInterviewList();
     }
-    //Bujhi nai ses
+
 
     syncAllSection(companyName, "rejected");
     cardCount();
@@ -271,4 +311,28 @@ function syncAllSection(companyName, status) {
       );
     }
   });
+}
+
+function checkNoJobs() {
+  const noJobSection = document.getElementById("no-job-section");
+  const allCards = document.getElementById("all-cards");
+  const filteredSection = document.getElementById("filtered-section");
+
+  let hasJobs = false;
+
+  if (currentStatus === "all-filter-btn") {
+
+    hasJobs = allCards.children.length > 0;
+  } else if (currentStatus === "interview-filter-btn") {
+
+    hasJobs = interviewList.length > 0;
+  } else if (currentStatus === "rejected-filter-btn") {
+
+    hasJobs = rejectedList.length > 0;
+  }
+  if (hasJobs) {
+    noJobSection.classList.add("hidden");
+  } else {
+    noJobSection.classList.remove("hidden");
+  }
 }
